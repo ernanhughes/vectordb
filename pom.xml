@@ -24,6 +24,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <mybatis.version>3.0.2</mybatis.version>
         <jackson.core.version>2.15.2</jackson.core.version>
+        <pdfbox.version>2.0.24</pdfbox.version>
+        <ant.version>1.10.14</ant.version>
         <maven-surefire-plugin.version>3.0.0</maven-surefire-plugin.version>
         <junit-jupiter-api.version>5.9.2</junit-jupiter-api.version>
         <junit-jupiter-engine.version>5.9.2</junit-jupiter-engine.version>
@@ -57,12 +59,21 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox</artifactId>
+            <version>${pdfbox.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.ant</groupId>
+            <artifactId>ant</artifactId>
+            <version>${ant.version}</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>

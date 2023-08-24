@@ -1,0 +1,10 @@
+<project name="FileWalker" default="walk-files" basedir=".">
+    <target name="walk-files">
+        <!-- Define a set of files using the folderPath property -->
+        <fileset id="myfiles" dir="${folderPath}" includes="**/*.*"/>
+        <!-- Walk through each file and echo its name -->
+        <pathconvert pathsep="${line.separator}" property="file.list" refid="myfiles" />
+        <echo>Files:</echo>
+        <echo>${file.list}</echo>
+    </target>
+</project>

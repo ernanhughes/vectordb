@@ -4,7 +4,7 @@ import com.fodala.pojo.ToDo;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-public class TodoValidator implements Validator {
+public class ToDoValidator implements Validator {
 
     @Override
     public boolean supports(Class<?> cls) {

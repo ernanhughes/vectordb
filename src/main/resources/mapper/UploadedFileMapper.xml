@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fodala.mapper.UploadedMapper">
+    <sql id="Base_Column_List">
+        id, name, uploaded_path, file_size, uploaded_date, user_name, file_type
+    </sql>
+
+    <select id="all" resultType="UploadedFile">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM uploaded_file
+    </select>
+
+    <select id="findOne" parameterType="java.lang.Long"
+            resultType="UploadedFile">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM users
+        WHERE id = #{id}
+    </select>
+
+    <select id="count" resultType="java.lang.Long">
+        select count(*) from uploaded_file
+    </select>
+
+    <insert id="insert" parameterType="UploadedFile">
+        insert into uploaded_file (id, name, uploaded_path,
+        file_size, uploaded_date, user_name,
+        file_type)
+        values (#{id}, #{name},
+        #{uploadedPath},
+        #{fileSize}, #{uploadedDate}, #{userName},
+        #{fileType})
+    </insert>
+
+    <update id="update" parameterType="UploadedFile">
+        update uploaded_file
+        set id = #{row.id},
+        name = #{row.name},
+        uploaded_path = #{row.uploadedPath},
+        file_size = #{row.fileSize},
+        uploaded_date = #{row.uploadedDate},
+        user_name = #{row.userName},
+        file_type = #{row.fileType}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Long">
+        DELETE FROM
+        uploaded_file
+        WHERE
+        id =#{id}
+    </delete>
+</mapper>

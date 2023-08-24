@@ -1,0 +1,39 @@
+.btn-link {
+  border: solid;
+  outline: none;
+  background: none;
+  cursor: pointer;
+  color: #0000EE;
+  text-decoration: none;
+  padding: 2;
+  font-family: inherit;
+  font-size: inherit;
+}
+.btn-no-border {
+  border: none;
+  color: blue;
+  text-decoration: blue;
+  text-color: blue;
+  background: none;
+}
+.btn-table {
+  border: solid;
+  outline: none;
+  background: none;
+  cursor: pointer;
+  color: none;
+  border-color: transparent !important;
+  text-decoration: none;
+  padding: 0.5;
+  font-family: inherit;
+  font-size: inherit;
+}
+.highlight {
+    background-color: #f2f2f2;
+}
+.rect.btn {
+  stroke: #fff;
+  fill: #fff;
+  fill-opacity: 0;
+  stroke-opacity: 0;
+}

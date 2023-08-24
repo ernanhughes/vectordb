@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>NavigationBar</title>
+
+</head>
+<body>
+
+<div th:fragment="sidebar" class="d-none d-md-block" id="sidebar">
+    <div class="card">
+        <form class="d-flex" method="post" role="search" th:action="@{/search}">
+            <input aria-label="Search" class="form-control me-2" id="search" name="search" placeholder="Search"
+                   th:classappend="${section == 'search'} ? 'active':''" th:value="${search}" type="search">
+            <button class="btn btn-outline-primary btn-search" type="submit">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+        <div class="card-body">
+            <nav class="nav flex-column nav-pills nav-gap-y-1">
+                <a class="nav-item nav-link has-icon nav-link-faded" data-toggle="tab"
+                   th:classappend="${section == 'myday'} ? 'active':''" th:href="@{/myday}">
+                    <i class="fas fa-sun"></i> My Day
+                    <span class="badge badge-default" th:classappend="${section == 'myday'} ? '':'bg-secondary'"
+                          th:text="${count?.myday}"></span>
+                </a> <a class="nav-item nav-link has-icon nav-link-faded" data-toggle="tab"
+                        th:classappend="${section == 'important'} ? 'active':''" th:href="@{/important}">
+                <i class="fas fa-star"></i> Important
+                <span class="badge badge-default" th:classappend="${section == 'important'} ? '':'bg-secondary'"
+                      th:text="${count?.important}"></span>
+            </a> <a class="nav-item nav-link has-icon nav-link-faded" data-toggle="tab"
+                    th:classappend="${section == 'planned'} ? 'active':''" th:href="@{/planned}">
+                <i class="fas fa-map"></i> Planned
+                <span class="badge badge-default" th:classappend="${section == 'planned'} ? '':'bg-secondary'"
+                      th:text="${count?.planned}"></span>
+            </a> <a class="nav-item nav-link has-icon nav-link-faded" data-toggle="tab"
+                    th:classappend="${section == 'settings'} ? 'active':''" th:href="@{/settings}">
+                <i class="fas fa-cog"></i> Settings
+            </a> <a class="nav-item nav-link has-icon nav-link-faded" data-toggle="tab"
+                    th:classappend="${section == 'history'} ? 'active':''" th:href="@{/history}">
+                <i class="fas fa-clock"></i> History
+            </a>
+                <a class="nav-item nav-link has-icon nav-link-faded" data-toggle="tab"
+                   th:classappend="${section == 'tasks'} ? 'active':''" th:href="@{/tasks}">
+                    <i class="fas fa-thumbtack"></i> Tasks
+                    <span class="badge badge-default" th:classappend="${section == 'tasks'} ? '':'bg-secondary'"
+                          th:text="${count?.tasks}"></span>
+                </a>
+                <a class="nav-item nav-link has-icon nav-link-faded" data-toggle="tab"
+                   th:classappend="${section == 'calendar'} ? 'active':''" th:href="@{/calendar}">
+                    <i class="fas fa-calendar"></i> Calendar
+                </a>
+                <hr />
+                <a class="nav-item nav-link has-icon nav-link-faded" data-toggle="tab"
+                   th:attr="data-list-id=${listName.id}"
+                   th:classappend="${section == 'list' && listName.id == list_id} ? 'active':''"
+                   th:each="listName: ${listNames}" th:href="@{/list/} + ${listName.id}">
+                    <i class="fas fa-bars"></i> <span th:remove="tag" th:text="${listName.name}"></span>
+                </a>
+            </nav>
+            <hr />
+            <form class="form-horizontal" id="new-list-form" method="post" th:action="@{/addList}" th:id="list_add">
+                <div class="d-flex flex-row align-items-center">
+                    <input class="form-control" name="list" placeholder="Add new list..." />
+                    <div class="btn-group-vertical">
+                        <button class="btn btn-outline-primary btn-lrg" onclick="$(this).closest('form').submit();">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+    <div class="text-center center-block" th:fragment="debug">
+        <div id="debug">
+            <table class=".is-breakable {word-break: break-word;}">
+                <tr th:each="var : ${#vars.getVariableNames()}">
+                    <td th:text="${var}"></td>
+                    <td th:text="${#vars.getVariable(var)}"></td>
+                </tr>
+                <tr>
+                    <td>param</td>
+                    <td th:text="${#vars.getVariable('param')}"></td>
+                </tr>
+                <tr>
+                    <td>session</td>
+                    <td th:text="${#vars.getVariable('session')}"></td>
+                </tr>
+                <tr>
+                    <td>application</td>
+                    <td th:text="${#vars.getVariable('application')}"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+

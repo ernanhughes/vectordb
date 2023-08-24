@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{common::#header}"></head>
+
+<body class="container">
+    <div class="with:80%">
+        <br />
+        <h1 th:text="'Edit Todo: ' + ${todo.title}" th:value="*{todo.title}">Edit Todo...</h1>
+        <br />
+        <form class="form-horizontal" id="todo-form" method="post" th:action="@{/todo}">
+            <div class="row">
+                <div class="col-sm-4" id="div_important" th:classappend="${todo.important == 1} ? '':'display: none;'">
+                    <svg fill="gold" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                        <g>
+                            <polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                            <rect class="btn" height="24" onclick="window.important(false);" width="24" x="0" y="0" />
+                        </g>
+                    </svg>
+                </div>
+                <div class="col-sm-4" id="div_not_important"
+                    th:classappend="${todo.important == 1} ? 'display: none;':''">
+                    <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                        <g>
+                            <polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                            <rect class="btn" height="24" onclick="window.important(true);" width="24" x="0" y="0" />
+                        </g>
+                    </svg>
+                </div>
+                <div class="col-sm-4" id="div_completed" th:classappend="${todo.completed == 1} ? '':'display: none;'">
+                    <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                        <g>
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                            <polyline points="22 4 12 14.01 9 11.01" />
+                            <rect class="btn" height="24" onclick="window.completed(false);" width="24" x="0" y="0" />
+                        </g>
+                    </svg>
+                </div>
+                <div class="col-sm-4" id="div_not_completed"
+                    th:classappend="${todo.completed == 1} ? 'display: none;':''">
+                    <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                        <g>
+                            <circle cx="12" cy="12" r="10" />
+                            <rect class="btn" height="24" onclick="window.completed(true);" width="24" x="0" y="0" />
+                        </g>
+                    </svg>
+                </div>
+            </div>
+            <br />
+            <input name="id" th:value="*{todo.id}" type="hidden" />
+            <input name="currentTab" th:value="*{currentTab}" type="hidden" />
+            <input name="listId" th:value="*{listId}" type="hidden" />
+            <input id="important" name="important" th:value="*{todo.important}" type="hidden" />
+            <input id="completed" name="completed" th:value="*{todo.completed}" type="hidden" />
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="title">Title</label>
+                <div class="col-sm-10">
+                    <input class="form-control" id="title" name="title" placeholder="title" th:value="*{todo.title}"
+                        type="text" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="status">Status</label>
+                <div class="col-sm-10">
+                    <input class="form-control" id="status" name="status" placeholder="name" th:value="*{todo.status}"
+                        type="text" />
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <label class="col-sm-2 control-label" for="start">Start</label>
+                <div class="col-sm-3">
+                    <input class="form-control" id="start" name="start" placeholder="2024-12-12"
+                        th:value="*{todo.start}" type="text" />
+                </div>
+                <label class="col-sm-2 control-label" for="end">End</label>
+                <div class="col-sm-3">
+                    <input class="form-control" id="end" name="end" placeholder="2024-12-12" th:value="*{todo.end}"
+                        type="text" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="schedule">Schedule</label>
+                <div class="col-sm-10">
+                    <input class="form-control" id="schedule" name="schedule" placeholder="schedule"
+                        th:value="*{todo.schedule}" type="text" />
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="created">Created</label>
+                <div class="col-sm-10">
+                    <input class="form-control" id="created" name="created" placeholder="created" readonly
+                        th:value="*{todo.created}" type="text" />
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <input class="btn btn-info" type="submit" value="Submit" />
+                    <a class="btn btn-info" th:href="@{/}">Back</a>
+                </div>
+            </div>
+        </form>
+        <div th:if="${not #lists.isEmpty(history)}">
+            <hr />
+            <h1>History</h1>
+            <br />
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Title</th>
+                        <th>Status</th>
+                        <th>Description</th>
+                        <th>Important</th>
+                        <th>Start</th>
+                        <th>End</th>
+                        <th>Completed</th>
+                        <th>Created At</th>
+                        <th>Updated At</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="todo : ${history}">
+                        <th scope="row" th:text="${todo.id}">1</th>
+                        <td th:text="${todo.title}"></td>
+                        <td th:text="${todo.status}"></td>
+                        <td th:text="${todo.description}"></td>
+                        <td th:text="${todo.important}"></td>
+                        <td th:text="${todo.start}"></td>
+                        <td th:text="${todo.end}"></td>
+                        <td th:text="${todo.completed}"></td>
+                        <td th:text="${todo.created}"></td>
+                        <td th:text="${todo.updated}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <link href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css" rel="stylesheet">
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script>
+        $(document).ready(function () {
+            let completed = [[${todo.completed}]];
+            let important = [[${todo.important}]];
+            window.completed = function (isComplete) {
+                console.log("Setting isComplete: " + isComplete);
+                if (isComplete) {
+                    $('#div_completed').show();
+                    $('#div_not_completed').hide();
+                    $('input[id=completed]').val('1');
+                } else {
+                    $('#div_completed').hide();
+                    $('#div_not_completed').show();
+                    $('completed').val(0);
+                    $('input[id=completed]').val('0');
+                }
+            }
+
+            window.important = function (isImportant) {
+                console.log("Setting isImportant: " + isImportant);
+                if (isImportant) {
+                    $('#div_important').show();
+                    $('#div_not_important').hide();
+                    $('input[id=important]').val('1');
+                } else {
+                    $('#div_important').hide();
+                    $('#div_not_important').show();
+                    $('input[id=important]').val('0');
+                }
+            }
+
+            window.completed(completed != 0);
+            window.important(important != 0);
+        });
+
+        $(function () {
+            $("#start").datepicker();
+        });
+
+        $(function () {
+            $("#end").datepicker();
+        });
+    </script>
+</body>
+
+</html>

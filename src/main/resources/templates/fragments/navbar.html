@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>NavigationBar</title>
+
+</head>
+<body>
+
+<nav th:fragment="navbar" class="navbar navbar-expand-md bg-dark navbar-dark">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" th:href="@{/}">Exegesis - information illuminated</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a class="nav-link" th:href="@{/}">Home</a></li>
+
+            <li><a class="nav-link" th:href="@{/upload}">Upload</a></li>
+
+            <li><a class="nav-link" th:href="@{/individual}">Add New</a></li>
+
+            <li><a class="nav-link" th:href="@{/list}">All</a></li>
+
+            <li><a class="nav-link" th:href="@{/settings}">Settings</a></li>
+        </ul>
+    </div>
+    <div>
+        <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+    </div>
+</nav>
+
+</body>
+</html>

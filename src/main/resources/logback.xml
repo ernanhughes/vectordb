@@ -1,0 +1,44 @@
+<configuration>
+    <property name="LOG_DIR" value="${user.home}/vectordb/log"/>
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>${LOG_DIR}/vectordb.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--
+    log4j.logger.org.thymeleaf=DEBUG
+    log4j.logger.org.thymeleaf.TemplateEngine.CONFIG=DEBUG
+    log4j.logger.org.thymeleaf.TemplateEngine.TIMER=DEBUG
+    log4j.logger.org.thymeleaf.TemplateEngine.cache.TEMPLATE_CACHE=DEBUG
+    log4j.logger.org.thymeleaf.TemplateEngine.cache.FRAGMENT_CACHE=DEBUG
+    log4j.logger.org.thymeleaf.TemplateEngine.cache.MESSAGE_CACHE=DEBUG
+    log4j.logger.org.thymeleaf.TemplateEngine.cache.EXPRESSION_CACHE=DEBUG
+    -->
+
+    <logger name="log4j.logger.org.thymeleaf" level="debug">
+    </logger>
+    <logger name="log4j.logger.org.thymeleaf.TemplateEngine.CONFIG" level="debug">
+    </logger>
+    <logger name="com.fodala.mapper.SettingsMapper" level="trace">
+    </logger>
+    <logger name="com.fodala.mapper.SessionMapper" level="trace">
+    </logger>
+    <logger name="com.fodala.mapper.ToDoMapper" level="trace">
+    </logger>
+
+
+    <appender name="STDOUT"
+              class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="debug">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
+    </root>
+</configuration>

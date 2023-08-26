@@ -12,6 +12,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.SpringVersion;
 import org.springframework.core.env.Environment;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -20,6 +22,7 @@ public class Application implements CommandLineRunner {
     private static final Logger logger = LoggerFactory.getLogger(Application.class);
     private final DataLoader dataLoader;
 
+    public static List<String> messages = new ArrayList<>();
     private final Environment env;
 
     @Autowired
@@ -42,8 +45,12 @@ public class Application implements CommandLineRunner {
     @Override
     public void run(String... args) {
         String initDB = env.getProperty("spring.datasource.initialization-mode");
-        String buildFilePath = "A:\\projects\\vectordb\\src\\main\\resources\\anttasks\\filewalker.xml";
-        Map<String, String> properties = Map.of("folderPath", "A:\\projects\\");
+        String classPath = "A:\\projects\\vectordb\\target\\vectordb-1.0-SNAPSHOT.jar";
+        String filePath = "E:\\Users\\ernan\\Videos\\Working with the Java Module System (Certification 1Z0-819)\\Exercise Files\\05\\using-services-slides.pdf";
+        String buildFilePath = "A:\\projects\\vectordb\\src\\main\\resources\\anttasks\\convert_pdf_to_text.xml";
+        Map<String, String> properties = Map.of("classPath", classPath,
+                "filePath", filePath,
+                "opPath", "A:\\text.txt");
         antRunner.run(buildFilePath, properties);
         if (Objects.equals(initDB, "always")) {
             logger.info("Initializing database.");
@@ -54,6 +61,7 @@ public class Application implements CommandLineRunner {
                 logger.error(e.getLocalizedMessage(), e);
             }
         }
+        logger.info("Messages: {}", messages);
     }
 
     private void createDatabase() throws InterruptedException {

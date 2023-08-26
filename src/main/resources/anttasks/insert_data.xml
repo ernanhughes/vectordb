@@ -1,0 +1,22 @@
+<project name="CeateTableAndInsertData" basedir="." default="insertData">
+
+    <property name="sql.driver" value="org.gjt.mm.mysql.Driver"/>
+    <property name="sql.url" value="jdbc:mysql://192.168.10.211/test"/>
+    <property name="sql.user" value="sandeep"/>
+    <property name="sql.pass" value="sandeep"/>
+
+    <target name="createTables" >
+        <sql driver="${sql.driver}" url="${sql.url}" userid="${sql.user}" password="${sql.pass}" >
+            <transaction src="client.sql"/>
+            <transaction src="project.sql"/>
+        </sql>
+    </target>
+
+    <target name="insertData" depends="createTables">
+        <sql driver="${sql.driver}" url="${sql.url}" userid="${sql.user}" password="${sql.pass}" >
+            <transaction src="insertclient.sql"/>
+            <transaction src="insertproject.sql"/>
+        </sql>
+    </target>
+
+</project>

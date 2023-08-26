@@ -14,7 +14,7 @@ import java.util.Map;
 
 @Service
 public class AntRunnerImpl implements AntRunner {
-    private static final Logger logger = LoggerFactory.getLogger(AntRunner.class);
+    private static final Logger logger = LoggerFactory.getLogger(AntRunnerImpl.class);
 
     @Override
     public void run(String buildFilePath, Map<String, String> properties){

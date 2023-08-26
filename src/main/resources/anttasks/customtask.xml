@@ -1,0 +1,6 @@
+<project name="CustomTaskExample" default="custom-task" basedir=".">
+    <taskdef name="MessageTask" classname="com.fodala.ant.task.MessageTask" classpath="A:\\projects\\vectordb\\target\\vectordb-1.0-SNAPSHOT.jar"/>
+    <target name="custom-task">
+        <MessageTask message="MessageTask: Hello from Ant!" />
+    </target>
+</project>

@@ -26,6 +26,7 @@
         <jackson.core.version>2.15.2</jackson.core.version>
         <pdfbox.version>2.0.24</pdfbox.version>
         <ant.version>1.10.14</ant.version>
+        <smile-core.version>3.0.1</smile-core.version>
         <maven-surefire-plugin.version>3.0.0</maven-surefire-plugin.version>
         <junit-jupiter-api.version>5.9.2</junit-jupiter-api.version>
         <junit-jupiter-engine.version>5.9.2</junit-jupiter-engine.version>
@@ -69,6 +70,11 @@
             <groupId>org.apache.pdfbox</groupId>
             <artifactId>pdfbox</artifactId>
             <version>${pdfbox.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.haifengl</groupId>
+            <artifactId>smile-core</artifactId>
+            <version>${smile-core.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.ant</groupId>

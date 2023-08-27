@@ -1,6 +1,11 @@
 <project name="PDFToTextTask" default="PDFToTextTask-task" basedir=".">
-    <taskdef name="PDFToTextTask" classname="com.fodala.ant.task.PDFToTextTask" classpath="A:\\projects\\vectordb\\target\\vectordb-1.0-SNAPSHOT.jar"/>
+    <taskdef name="PDFToTextTask" classname="com.fodala.ant.task.PDFToTextTask" classpath="${classPath}"/>
     <target name="PDFToTextTask-task">
         <PDFToTextTask filePath="${filePath}" opPath="${opPath}"  />
     </target>
+
+    <path id="my.classpath">
+        <pathelement location="postgresql-42.6.0.jar" />
+        <pathelement location="postgresql-42.6.0.jar" />
+    </path>
 </project>

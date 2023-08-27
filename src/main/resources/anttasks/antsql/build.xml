@@ -1,0 +1,32 @@
+<project name="PGCreateTableAndInsertData" basedir="." default="insertData">
+
+	<property file="config.properties" />
+
+	<path id="my.classpath">
+		<pathelement location="postgresql-42.6.0.jar" />
+	</path>
+	
+	<target name="show-dir">
+		<echo message="The script directory is: ${basedir}" />
+	</target>
+
+
+	<target name="createTables" depends="show-dir">
+		<sql driver="${driver.class}" url="${jdbc.url}" 
+			userid="${db.user}" password="${db.password}"
+			classpathref="my.classpath">
+			<transaction src="client.sql" />
+			<transaction src="project.sql" />
+		</sql>
+	</target>
+
+	<target name="insertData" depends="createTables">
+		<sql driver="${driver.class}" url="${jdbc.url}" 
+			userid="${db.user}" password="${db.password}"
+			classpathref="my.classpath">
+			<transaction src="insertclient.sql" />
+			<transaction src="insertproject.sql" />
+		</sql>
+	</target>
+
+</project>

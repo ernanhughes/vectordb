@@ -1,0 +1,21 @@
+<project name="InsertData" default="insert-data" basedir=".">
+    <!-- Set properties for the script -->
+    <property name="driver.class" value="org.postgresql.Driver" />
+    <property name="jdbc.url" value="jdbc:postgresql://localhost:5432/mydatabase" />
+    <property name="db.user" value="username" />
+    <property name="db.password" value="password" />
+    <property name="driver.path" value="/path/to/postgresql-jdbc.jar" />
+
+    <!-- Target to insert data -->
+    <target name="insert-data">
+        <!-- Load the PostgreSQL JDBC driver -->
+        <taskdef name="sql" classname="org.apache.tools.ant.taskdefs.SQLExec" classpath="${driver.path}" />
+        
+        <sql driver="${driver.class}" 
+             url="${jdbc.url}" 
+             userid="${db.user}" 
+             password="${db.password}">
+            INSERT INTO your_table_name(column1, column2) VALUES('value1', 'value2');
+        </sql>
+    </target>
+</project>

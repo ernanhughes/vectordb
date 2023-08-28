@@ -1,3 +1,19 @@
+DROP TABLE IF EXISTS task;
+CREATE TABLE task (
+    id SERIAL,
+	name TEXT NOT NULL,
+	status TEXT NOT NULL DEFAULT 'New',
+	description TEXT NULL,
+	enabled INTEGER NOT NULL DEFAULT 1,
+	"start" timestamp,
+	"end" timestamp,
+	schedule TEXT,
+	username TEXT,
+	important INTEGER NOT NULL DEFAULT 0,
+	created timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+
 DROP TABLE IF EXISTS todo;
 CREATE TABLE todo (
     id SERIAL,

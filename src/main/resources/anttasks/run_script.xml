@@ -1,0 +1,11 @@
+<project name="RunPowershellFromAnt" default="run-powershell" basedir=".">
+    <target name="run-powershell">
+        <exec executable="powershell.exe">
+            <arg value="-NoProfile"/>
+            <arg value="-ExecutionPolicy"/>
+            <arg value="Bypass"/>
+            <arg value="-File"/>
+            <arg value="${script}"/>
+        </exec>
+    </target>
+</project>

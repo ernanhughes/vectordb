@@ -1,6 +1,6 @@
 package com.fodala.service.impl;
 
-import com.fodala.ant.task.CustomBuildListener;
+import com.fodala.ant.task.VectorDBBuildListener;
 import com.fodala.service.AntRunner;
 import org.apache.tools.ant.DefaultLogger;
 import org.apache.tools.ant.Project;
@@ -26,7 +26,7 @@ public class AntRunnerImpl implements AntRunner {
         File buildFile = new File(buildFilePath);
         ProjectHelper projectHelper = ProjectHelper.getProjectHelper();
         project.addReference("ant.projectHelper", projectHelper);
-        project.addBuildListener(new CustomBuildListener());
+        project.addBuildListener(new VectorDBBuildListener());
         projectHelper.parse(project, buildFile);
         // Configure the project logging
         DefaultLogger logger = new AntRunnerLogger();

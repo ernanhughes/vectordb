@@ -1,0 +1,28 @@
+<project name="SparkSubmitDemo" default="submit-spark-job" basedir=".">
+
+    <!-- Load properties from the external file -->
+    <property file="spark-submit.properties"/>
+
+    <!-- Property for spark-submit command -->
+    <property name="spark.submit" value="${spark.home}/bin/spark-submit"/>
+
+    <!-- Target to submit the Spark job -->
+    <target name="submit-spark-job" depends="echo-properties">
+        <exec executable="${spark.submit}" failonerror="true">
+            <arg value="--master"/>
+            <arg value="${spark.master}"/>
+            <arg value="--jars"/>
+            <arg value="${spark.jars}"/>
+            <arg value="${spark.app}"/>
+        </exec>
+    </target>
+
+    <target name="echo-properties">
+        <echo>----- Logging Properties -----</echo>
+        <echo>spark.home: ${spark.home}</echo>
+        <echo>spark.app: ${spark.app}</echo>
+        <echo>spark.master: ${spark.master}</echo>
+        <echo>spark.jars: ${spark.jars}</echo>
+        <echo>--------------------------------</echo>
+    </target>
+</project>

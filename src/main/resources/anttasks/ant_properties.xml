@@ -1,6 +1,10 @@
 <?xml version="1.0"?>
 <project name="AntProperties" default="echo" basedir=".">
+    <property environment="env"/>
+
     <target name="echo">
+        <echo message="HADOOP_HOME value: ${env.HADOOP_HOME}"/>
+
         <echo message="The operating system is: ${os.name}"/>
         <!-- absolute path of the project. -->
         <echo message="The home path is: ${basedir}"/>

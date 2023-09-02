@@ -1,0 +1,366 @@
+Understanding the Modular JDK
+Java Champion
+@Sander_Mak   www.javamodularity.com
+Sander Mak
+Before the Modular JDK
+Before the Modular JDK
+rt.jar
+Before the Modular JDK
+rt.jar
+Tangled code
+Before the Modular JDK
+rt.jar
+Tangled code
+No encapsulation
+Before the Modular JDK
+rt.jar
+Tangled code
+Private API abuse
+No encapsulation
+Before the Modular JDK
+rt.jar
+Tangled code
+Private API abuse
+No encapsulation
+All-or-nothing
+Before the Modular JDK
+rt.jar
+Tangled code
+Private API abuse
+No encapsulation
+All-or-nothing
+Hard to evolve
+Exploring the Modular JDK
+Exploring the Modular JDK
+java --list-modules
+Exploring the Modular JDK
+java --list-modules
+java.base@11.0.10 
+java.compiler@11.0.10 
+java.datatransfer@11.0.10 
+java.desktop@11.0.10
+Exploring the Modular JDK
+java --list-modules
+java.base@11.0.10 
+java.compiler@11.0.10 
+java.datatransfer@11.0.10 
+java.desktop@11.0.10
+jdk.unsupported@11.0.10 
+jdk.unsupported.desktop@11.0.10 
+jdk.xml.dom@11.0.10 
+jdk.zipfs@11.0.10
+Exploring the Modular JDK
+java --list-modules
+java.base@11.0.10 
+java.compiler@11.0.10 
+java.datatransfer@11.0.10 
+java.desktop@11.0.10
+jdk.unsupported@11.0.10 
+jdk.unsupported.desktop@11.0.10 
+jdk.xml.dom@11.0.10 
+jdk.zipfs@11.0.10
+.. 71 modules ..
+Exploring the Modular JDK
+java --list-modules
+java.base@11.0.10 
+java.compiler@11.0.10 
+java.datatransfer@11.0.10 
+java.desktop@11.0.10
+jdk.unsupported@11.0.10 
+jdk.unsupported.desktop@11.0.10 
+jdk.xml.dom@11.0.10 
+jdk.zipfs@11.0.10
+.. 71 modules ..
+java.* vs. jdk.*
+Exploring the Modular JDK
+Exploring the Modular JDK
+Exploring the Modular JDK
+Exploring the Modular JDK
+Exploring the Modular JDK
+Exploring the Modular JDK
+java --describe-module java.sql
+Exploring the Modular JDK
+java --describe-module java.sql
+java.sql@11.0.10 
+exports java.sql 
+exports javax.sql 
+requires java.xml transitive 
+requires java.logging transitive 
+requires java.base mandated 
+requires java.transaction.xa transitive 
+uses java.sql.Driver
+Exploring the Modular JDK
+java --describe-module java.sql
+java.sql@11.0.10 
+exports java.sql 
+exports javax.sql 
+requires java.xml transitive 
+requires java.logging transitive 
+requires java.base mandated 
+requires java.transaction.xa transitive 
+uses java.sql.Driver
+Exploring the Modular JDK
+java --describe-module java.sql
+java.sql@11.0.10 
+exports java.sql 
+exports javax.sql 
+requires java.xml transitive 
+requires java.logging transitive 
+requires java.base mandated 
+requires java.transaction.xa transitive 
+uses java.sql.Driver
+Exploring the Modular JDK
+java --describe-module java.sql
+java.sql@11.0.10 
+exports java.sql 
+exports javax.sql 
+requires java.xml transitive 
+requires java.logging transitive 
+requires java.base mandated 
+requires java.transaction.xa transitive 
+uses java.sql.Driver
+Exploring the Modular JDK
+java --describe-module java.sql
+java.sql@11.0.10 
+exports java.sql 
+exports javax.sql 
+requires java.xml transitive 
+requires java.logging transitive 
+requires java.base mandated 
+requires java.transaction.xa transitive 
+uses java.sql.Driver
+Exploring the Modular JDK
+Exploring the Modular JDK
+Exploring the Modular JDK
+Depending on JDK Modules
+Depending on JDK Modules
+mymodule util
+module mymodule { 
+  requires util; 
+} 
+module util { 
+  exports com.pluralsight.util; 
+} 
+Depending on JDK Modules
+mymodule util
+module mymodule { 
+  requires util; 
+} 
+module util { 
+  exports com.pluralsight.util; 
+} 
+import java.util.logging.Logger; 
+// .. 
+Depending on JDK Modules
+mymodule util
+module mymodule { 
+  requires util; 
+} 
+module util { 
+  exports com.pluralsight.util; 
+}  requires java.logging; 
+} 
+Module Resolution: Step by Step
+util
+java.logging
+mymodule
+Module Resolution: Step by Step
+util
+java.logging
+mymodule
+module4/resolutionExercise files:
+Module Resolution: Step by Step
+java --show-module-resolution -p out -m mymodule
+Module Resolution: Step by Step
+mymoduleRoot module
+java --show-module-resolution -p out -m mymodule
+Module Resolution: Step by Step
+mymoduleRoot module
+java --show-module-resolution -p out -m mymodule
+util
+Module Resolution: Step by Step
+mymoduleRoot module
+java --show-module-resolution -p out -m mymodule
+util
+java.logging
+Module Resolution Checks
+Module Resolution Checks
+Valid module descriptors
+Module Resolution Checks
+Valid module descriptors
+java.lang.module.FindException:  
+Error reading module: out/util 
+Caused by: 
+java.lang.module.InvalidModuleDescriptorException:  
+Package com.pluralsight.util not found in module
+Module Resolution Checks
+Only one module with a given name
+java.lang.module.FindException: 
+Two versions of module util 
+found in out (util2 and util)
+Module Resolution Checks
+Only one module with a given name
+java.lang.module.FindException: 
+Two versions of module util 
+found in out (util2 and util)
+java -p out1:out2 -m mymodule
+Module Resolution Checks
+Package must uniquely belong to single module
+module mymodule reads package 
+com.pluralsight.util from both util and 
+util2
+Module Resolution Checks
+Package must uniquely belong to single module
+Error occurred during initialization of 
+boot layer 
+java.lang.LayerInstantiationException: 
+Package com.pluralsight.util in 
+both module util and module util2
+Requires Transitive
+Requires Transitive
+Requires Transitive
+java.sql java.logging
+Requires Transitive
+java.sql java.logging
+package java.sql 
+import java.util.logging.Logger; 
+public interface Driver { 
+  // .. 
+  public Logger getParentLogger(); 
+  //.. 
+}
+Requires Transitive
+java.sql java.logging
+requires transitive
+Requires Transitive
+java.sql java.logging
+module java.sql { 
+  // ... 
+  requires transitive java.logging; 
+  // ... 
+}
+requires transitive
+Requires Transitive
+java.sql java.logging
+module java.sql { 
+  // ... 
+  requires transitive java.logging; 
+  // ... 
+}
+mymodule
+requires
+requires transitive
+Requires Transitive
+java.sql java.logging
+module java.sql { 
+  // ... 
+  requires transitive java.logging; 
+  // ... 
+}
+mymodule
+requires
+requires transitive
+Packaging a Module
+Packaging a Module
+ out/ 
+   com/pluralsight/A.class 
+   com/pluralsight/B.class 
+   com/pluralsight/util/C.class 
+   module-info.class
+Packaging a Module
+ out/ 
+   com/pluralsight/A.class 
+   com/pluralsight/B.class 
+   com/pluralsight/util/C.class 
+   module-info.class
+module4/packagingExercise files:
+Packaging a Module
+ out/ 
+   com/pluralsight/A.class 
+   com/pluralsight/B.class 
+   com/pluralsight/util/C.class 
+   module-info.class
+Packaging a Module
+ out/ 
+   com/pluralsight/A.class 
+   com/pluralsight/B.class 
+   com/pluralsight/util/C.class 
+   module-info.class
+jar --create
+Packaging a Module
+ out/ 
+   com/pluralsight/A.class 
+   com/pluralsight/B.class 
+   com/pluralsight/util/C.class 
+   module-info.class
+jar --create
+--file=mods/pluralsight.jar
+Packaging a Module
+ out/ 
+   com/pluralsight/A.class 
+   com/pluralsight/B.class 
+   com/pluralsight/util/C.class 
+   module-info.class
+jar --create
+--file=mods/pluralsight.jar
+-C out/ .
+Packaging a Module
+ out/ 
+   com/pluralsight/A.class 
+   com/pluralsight/B.class 
+   com/pluralsight/util/C.class 
+   module-info.class
+jar --create
+--file=mods/pluralsight.jar
+-C out/ .
+jar --help
+Packaging a Module
+ out/ 
+   com/pluralsight/A.class 
+   com/pluralsight/B.class 
+   com/pluralsight/util/C.class 
+   module-info.class
+jar --create
+--file=mods/pluralsight.jar
+-C out/ .
+Versioning a Modular JAR
+jar --create
+--module-version=1.0.0
+-C out/ .
+--file=mods/pluralsight-1.0.0.jar
+Inspecting a Modular JAR
+jar --describe-module
+--file=mods/pluralsight-1.0.0.jar
+Inspecting a Modular JAR
+jar --describe-module
+--file=mods/pluralsight-1.0.0.jar
+com.pluralsight@1.0.0 jar:file://[full path]/
+pluralsight-1.0.0.jar/!module-info.class 
+exports com.pluralsight 
+requires java.base mandated 
+contains com.pluralsight.util
+Alternative Packaging
+jmod
+Alternative Packaging
+jmod - Native libraries & header files 
+- Legal notices  
+- Not executable
+Alternative Packaging
+jmod - Native libraries & header files 
+- Legal notices  
+- Not executable
+$JAVA_HOME/jmods
+Alternative Packaging
+jmod - Native libraries & header files 
+- Legal notices  
+- Not executable
+Intended for use with jlink to create native images
+$JAVA_HOME/jmods
+Summary
+Summary
+Summary Modularized JDK
+Summary Modularized JDK
+Requiring JDK modules
+Summary Modularized JDK
+Requiring JDK modules
+Packaging modular JARs 

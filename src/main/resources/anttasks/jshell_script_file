@@ -1,0 +1,12 @@
+import org.apache.tools.ant.types.Commandline;
+{
+  class A {
+    public void main(String args[]) {
+      for(String arg : args) {
+        System.out.println(arg);
+      }
+    }
+  }
+  new A().main(Commandline.translateCommandline(System.getProperty("args")));
+}
+/exit

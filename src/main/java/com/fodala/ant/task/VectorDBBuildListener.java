@@ -5,8 +5,8 @@ import org.apache.tools.ant.BuildListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class CustomBuildListener implements BuildListener {
-    private static final Logger logger = LoggerFactory.getLogger(CustomBuildListener.class);
+public class VectorDBBuildListener implements BuildListener {
+    private static final Logger logger = LoggerFactory.getLogger(VectorDBBuildListener.class);
 
     @Override
     public void buildStarted(BuildEvent event) {

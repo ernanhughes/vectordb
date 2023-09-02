@@ -1,0 +1,19 @@
+<project name="ShellOutputDemo" default="main" basedir=".">
+
+    <!-- Property to hold the output of the shell command -->
+    <property name="current.dir" value=""/>
+
+    <!-- Target that calls the shell command and captures its output -->
+    <target name="fetch-dir">
+        <exec executable="pwd" outputproperty="current.dir"/>
+    </target>
+
+    <!-- Target to echo the output -->
+    <target name="display-dir" depends="fetch-dir">
+        <echo>Current directory is: ${current.dir}</echo>
+    </target>
+
+    <!-- Main target to execute both tasks -->
+    <target name="main" depends="fetch-dir,display-dir"/>
+
+</project>

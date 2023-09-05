@@ -1,0 +1,22 @@
+<project name="RedisSearchTaskExample" default="redis-search-task" basedir=".">
+    <property file="redis.properties"/>
+
+    <path id="redis.classpath">
+        <pathelement location="A:\\projects\\vectordb\\target\\vectordb-1.0-SNAPSHOT.jar"/>
+        <pathelement location="A:\projects\vectordb\target\jedis-5.0.0-beta2.jar"/>
+    </path>
+
+    <taskdef name="RedisSearchTask" classname="com.fodala.ant.task.RedisSearchTask"
+             classpathref="redis.classpath"/>
+
+    <target name="redis-search-task" depends="echo-properties">
+        <RedisSearchTask message="MessageTask: Hello from Ant!" />
+    </target>
+
+    <target name="echo-properties">
+        <echo>----- Logging Properties -----</echo>
+        <echo>classpath: ${classpath}</echo>
+        <echo>--------------------------------</echo>
+    </target>
+
+</project>

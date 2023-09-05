@@ -33,7 +33,7 @@ public class PGvector extends PGobject implements PGBinaryObject, Serializable, 
     /**
      * Constructor
      */
-    public PGvector(String s) throws SQLException {
+    public PGvector(String s) {
         this();
         setValue(s);
     }
@@ -41,7 +41,8 @@ public class PGvector extends PGobject implements PGBinaryObject, Serializable, 
     /**
      * Sets the value from a text representation of a vector
      */
-    public void setValue(String s) throws SQLException {
+    @Override
+    public void setValue(String s) {
         if (s == null) {
             vec = null;
         } else {
@@ -56,6 +57,7 @@ public class PGvector extends PGobject implements PGBinaryObject, Serializable, 
     /**
      * Returns the text representation of a vector
      */
+    @Override
     public String getValue() {
         if (vec == null) {
             return null;

@@ -6,6 +6,5 @@
 
     <path id="my.classpath">
         <pathelement location="postgresql-42.6.0.jar" />
-        <pathelement location="postgresql-42.6.0.jar" />
     </path>
 </project>

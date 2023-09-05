@@ -15,7 +15,7 @@ public class VectorDBBuildListener implements BuildListener {
 
     @Override
     public void buildFinished(BuildEvent event) {
-        logger.info("Build Finished");
+        logger.info("Build Finished: {}", event);
     }
 
     @Override

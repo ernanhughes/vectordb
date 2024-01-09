@@ -1,0 +1,20 @@
+<project name="CsvToDatabaseProject" default="importcsv" basedir=".">
+
+    <property file="db.properties"/>
+
+    <path id="custom.task.classpath">
+        <pathelement location="A:\\projects\\vectordb\\target\\vectordb-1.0-SNAPSHOT.jar"/>
+        <pathelement location="postgresql-42.6.0.jar" />
+    </path>
+
+    <taskdef name="csvtodatabase" classname="com.fodala.ant.task.CsvToDatabaseTask" classpathref="custom.task.classpath"/>
+
+    <target name="importcsv">
+        <csvtodatabase
+                csvFilePath="path/to/your/csvfile.csv"
+                dbUrl="jdbc:yourdb://localhost:3306/yourdatabase"
+                dbUser="yourdbusername"
+                dbPassword="yourdbpassword"
+                tableName="yourtablename"/>
+    </target>
+</project>

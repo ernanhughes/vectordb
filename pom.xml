@@ -26,6 +26,8 @@
         <jackson.core.version>2.15.2</jackson.core.version>
         <pdfbox.version>2.0.24</pdfbox.version>
         <ant.version>1.10.14</ant.version>
+        <jeromq.version>0.5.3</jeromq.version>
+        <jedis.version>5.0.0</jedis.version>
         <smile-core.version>3.0.1</smile-core.version>
         <maven-surefire-plugin.version>3.0.0</maven-surefire-plugin.version>
         <junit-jupiter-api.version>5.9.2</junit-jupiter-api.version>
@@ -64,12 +66,17 @@
         <dependency>
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
-            <version>5.0.0</version>
+            <version>${jedis.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.zeromq</groupId>
+            <artifactId>jeromq</artifactId>
+            <version>${jeromq.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.pdfbox</groupId>
